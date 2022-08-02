@@ -1,0 +1,11 @@
+group,function,value,throughput_num,throughput_type,sample_measured_value,unit,iteration_count
+tokio_postgres,,,,,12267229273.0,ns,1
+tokio_postgres,,,,,12621071870.0,ns,1
+tokio_postgres,,,,,12639847007.0,ns,1
+tokio_postgres,,,,,12307383560.0,ns,1
+tokio_postgres,,,,,12207782890.0,ns,1
+tokio_postgres,,,,,12434126830.0,ns,1
+tokio_postgres,,,,,12226414974.0,ns,1
+tokio_postgres,,,,,12166240238.0,ns,1
+tokio_postgres,,,,,12140715611.0,ns,1
+tokio_postgres,,,,,12260757415.0,ns,1

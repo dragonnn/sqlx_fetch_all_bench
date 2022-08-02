@@ -1,0 +1,11 @@
+group,function,value,throughput_num,throughput_type,sample_measured_value,unit,iteration_count
+sqlx_query,,,,,43538561980.0,ns,1
+sqlx_query,,,,,43601788072.0,ns,1
+sqlx_query,,,,,44128501850.0,ns,1
+sqlx_query,,,,,44570275246.0,ns,1
+sqlx_query,,,,,45138200923.0,ns,1
+sqlx_query,,,,,44121256543.0,ns,1
+sqlx_query,,,,,43670338286.0,ns,1
+sqlx_query,,,,,44065255629.0,ns,1
+sqlx_query,,,,,43274682732.0,ns,1
+sqlx_query,,,,,46938304353.0,ns,1

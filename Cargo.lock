@@ -1266,20 +1266,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "sqlx-fetch_all"
-version = "0.1.0"
-dependencies = [
- "chrono",
- "criterion",
- "pg_mapper",
- "postgres-types",
- "sqlx",
- "tokio",
- "tokio-postgres",
- "uuid",
-]
-
-[[package]]
 name = "sqlx-macros"
 version = "0.6.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1307,6 +1293,20 @@ dependencies = [
  "once_cell",
  "tokio",
  "tokio-rustls",
+]
+
+[[package]]
+name = "sqlx_fetch_all_bench"
+version = "0.1.0"
+dependencies = [
+ "chrono",
+ "criterion",
+ "pg_mapper",
+ "postgres-types",
+ "sqlx",
+ "tokio",
+ "tokio-postgres",
+ "uuid",
 ]
 
 [[package]]
