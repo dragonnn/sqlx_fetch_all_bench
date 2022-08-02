@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  app:
+    container_name: sqlx_fetch_all_rust
+    build: .
+    init: true
+    env_file: .env
+
+    command: /bin/bash -c "cd /home/vscode/workspace; cargo bench"
+    user: vscode
+    volumes:
+      - type: bind
+        source: .
+        target: /home/vscode/workspace
+    depends_on:
+      - db
+      
+  db:
+    container_name: sqlx_fetch_all_db
+    image: timescale/timescaledb:2.7.2-pg14
+    restart: unless-stopped
+
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_DB: test
+      POSTGRES_PASSWORD: postgres
+      PGDATA: /var/lib/postgresql/data/test
+      TIMESCALEDB_TELEMETRY: off
+    
+    ports:
+      - '5432:5432'
+    
+    

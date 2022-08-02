@@ -1,0 +1,27 @@
+[package]
+name = "sqlx-fetch_all"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+
+tokio = { version = "1.17.0", features = ["full"] }
+tokio-postgres = "0.7.6"
+pg_mapper = "0.2.1"
+postgres-types = { version = "0.X.X", features = ["with-uuid-1", "with-chrono-0_4"] }
+
+sqlx = { version = "0.6", features = ["runtime-tokio-rustls", "postgres", "uuid", "chrono"] }
+
+uuid = { version = "1.1.2", features = ["serde", "v4"] }
+chrono = { version = "0.4.19", features = ["serde"] }
+
+
+[dev-dependencies]
+criterion = { version = "0.3.5", features = ["async_tokio", "html_reports"] }
+
+[[bench]]
+name = "sqlx_fetch_all"
+harness = false
+nresamples = 1
