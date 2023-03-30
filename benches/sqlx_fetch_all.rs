@@ -3,7 +3,7 @@ use sqlx::{Executor, PgPool};
 use std::env;
 use uuid::Uuid;
 
-#[derive(PartialEq, Clone, pg_mapper::TryFromRow)]
+#[derive(PartialEq, Clone, pg_mapper::TryFromRow, sqlx::FromRow)]
 pub struct Data {
     pub datetime: chrono::NaiveDateTime,
     pub measuring_result: f64,
@@ -92,6 +92,28 @@ pub fn sqlx_fetch_all_bench(c: &mut Criterion) {
         (sqlx_pool, client)
     });
     // end setup
+    c.bench_function("sqlx_query_method", |b| {
+        b.to_async(&rt).iter( || {
+            // begin measured portion of benchmark
+            async {
+                let data = sqlx::query("SELECT * FROM data WHERE device_uuid = ($1) AND (datetime >= $2 AND ($3 OR datetime <= $4)) ORDER BY datetime ASC").bind(device_uuid
+                        ).bind(start_date).bind(false).bind(end_date).fetch_all(&sqlx_pool).await.unwrap();
+                assert_ne!(data.len(), 0);
+            }
+        })
+    });
+
+    // end setup
+    c.bench_function("sqlx_query_as_method", |b| {
+        b.to_async(&rt).iter( || {
+            // begin measured portion of benchmark
+            async {
+                let data: Vec<Data> = sqlx::query_as("SELECT * FROM data WHERE device_uuid = ($1) AND (datetime >= $2 AND ($3 OR datetime <= $4)) ORDER BY datetime ASC").bind(device_uuid
+                        ).bind(start_date).bind(false).bind(end_date).fetch_all(&sqlx_pool).await.unwrap();
+                assert_ne!(data.len(), 0);
+            }
+        })
+    });
 
     c.bench_function("sqlx_query_as", |b| {
 
